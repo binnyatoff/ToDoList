@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcome">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="ru.binnyatoff.todolist.fragments.list.ListFragment"
+        android:label="ListFragment">
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="ru.binnyatoff.todolist.fragments.add.AddFragment"
+        android:label="AddFragment" />
+
+
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="ru.binnyatoff.todolist.fragments.update.UpdateFragment"
+        android:label="UpdateFragment">
+        <argument
+            android:name="curent_item"
+            app:argType="ru.binnyatoff.todolist.model.ToDo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signIn"
+        android:name="ru.binnyatoff.todolist.fragments.authentication.SignIn"
+        android:label="SignIn">
+        <action
+            android:id="@+id/action_signIn_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcome"
+        android:name="ru.binnyatoff.todolist.fragments.authentication.Welcome"
+        android:label="Welcome">
+        <action
+            android:id="@+id/action_welcome_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_welcome_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="ru.binnyatoff.todolist.fragments.authentication.Register"
+        android:label="Register">
+        <action
+            android:id="@+id/action_register_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+    //ToDoFragments
+    <string name="name">Задание</string>
+    <string name="add">Добавить</string>
+    <string name="text">Описание</string>
+    <string name="update">Изменить</string>
+    //Sign In
+    <string name="sign_in_text">Let\'s sign you in.</string>
+    <string name="sign_in_small_text">Welcome back.\nYou\'ve been missed!</string>
+    <string name="sign_in">Sign In</string>
+    //Sign Up
+    <string name="sign_up_text">Let\'s register you in.</string>
+    <string name="sign_up_small_text">Welcome to </string>
+    <string name="sign_up">Sign Up</string>
+    //Welcome
+    <string name="welcome">Welcome to ToDoList</string>
+    //All sign
+    <string name="login">Email</string>
+    <string name="password">Password</string>
+</resources>
