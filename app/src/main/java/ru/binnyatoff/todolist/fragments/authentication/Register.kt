@@ -6,16 +6,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.room.Update
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.databinding.FragmentRegisterBinding
-import com.google.firebase.auth.AuthResult
-
-import com.google.android.gms.tasks.OnCompleteListener
-
 
 class Register : Fragment(R.layout.fragment_register) {
     private lateinit var binding: FragmentRegisterBinding

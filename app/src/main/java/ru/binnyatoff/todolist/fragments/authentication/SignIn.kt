@@ -13,7 +13,7 @@ import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.databinding.FragmentSigninBinding
 
 class SignIn : Fragment(R.layout.fragment_signin) {
-    lateinit var binding: FragmentSigninBinding
+    private lateinit var binding: FragmentSigninBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
