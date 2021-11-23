@@ -7,57 +7,64 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.model.ToDo
 
-interface ToDoActionListener {
+interface ToDoDelegate {
+    fun todoClick(todo: ToDo)
     fun todoDelete(todo: ToDo)
     fun doneTodo(id: Int, done: Boolean)
 }
 
-class ListAdapter(private val actionListener: ToDoActionListener) :
-    RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     private var todolist = emptyList<ToDo>()
+    private var delegate: ToDoDelegate? = null
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    fun attachDelegate(delegate: ToDoDelegate) {
+        this.delegate = delegate
+    }
+
+    class ViewHolder(itemView: View, private val delegate: ToDoDelegate?) :
+        RecyclerView.ViewHolder(itemView) {
+
         val todo_item: View = itemView.findViewById(R.id.todo_item)
         var name_todo: TextView = itemView.findViewById(R.id.name_todo)
         var text_todo: TextView = itemView.findViewById(R.id.text_todo)
         var delete_todo: ImageButton = itemView.findViewById(R.id.delete_todo)
         var done_todo: CheckBox = itemView.findViewById(R.id.done_todo) as CheckBox
+
+        fun bind(item: ToDo) {
+            name_todo.text = item.name_todo
+            text_todo.text = item.text_todo
+            done_todo.isChecked = item.done_todo
+
+            delete_todo.setOnClickListener {
+                delegate?.todoDelete(item)
+            }
+            done_todo.setOnClickListener {
+                delegate?.doneTodo(item.id, done_todo.isChecked)
+            }
+            todo_item.setOnClickListener {
+                delegate?.todoClick(item)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.todo_item, parent, false)
-        )
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.todo_item, parent, false)
+        return ViewHolder(view, delegate)
     }
 
     override fun getItemCount(): Int = todolist.size
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val curentItem = todolist[position]
-        holder.name_todo.text = curentItem.name_todo
-        holder.text_todo.text = curentItem.text_todo
-        holder.done_todo.isChecked = curentItem.done_todo
-
-        holder.todo_item.setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(curentItem)
-            holder.itemView.findNavController().navigate(action)
-
-        }
-
-        holder.delete_todo.setOnClickListener {
-            actionListener.todoDelete(curentItem)
-        }
-        holder.done_todo.setOnClickListener {
-            actionListener.doneTodo(curentItem.id, holder.done_todo.isChecked)
-        }
+        val currentItem = todolist[position]
+        holder.bind(currentItem)
     }
 
 
