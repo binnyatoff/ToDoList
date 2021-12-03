@@ -1,4 +1,4 @@
-package ru.binnyatoff.todolist.fragments.authentication
+package ru.binnyatoff.todolist.screens.fragments.authentication
 
 import android.os.Bundle
 import android.view.View

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
 
 @Database(entities = [ToDo::class], version = 1, exportSchema = false)
 abstract class ToDoDatabase : RoomDatabase() {

@@ -2,23 +2,24 @@ package ru.binnyatoff.todolist.room.repository
 
 import androidx.lifecycle.LiveData
 import ru.binnyatoff.todolist.room.data.ToDoDao
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
+import javax.inject.Inject
 
-class ToDoRepository(private val ToDoDao: ToDoDao) {
-    val readAllData:LiveData<List<ToDo>> = ToDoDao.readAllData()
+class ToDoRepository @Inject constructor(private var toDoDao: ToDoDao) {
+    val readAllData:LiveData<List<ToDo>> = toDoDao.readAllData()
 
     suspend fun addTodo(todo: ToDo){
-        ToDoDao.addTodo(todo)
+        toDoDao.addTodo(todo)
     }
 
     suspend fun deleteTodo(todo: ToDo){
-        ToDoDao.deleteTodo(todo)
+        toDoDao.deleteTodo(todo)
     }
 
     suspend fun updateTodo(todo: ToDo) {
-        ToDoDao.updateTodo(todo)
+        toDoDao.updateTodo(todo)
     }
     suspend fun doneTodo(id: Int, done: Boolean){
-        ToDoDao.doneTodo(id, done)
+        toDoDao.doneTodo(id, done)
     }
 }

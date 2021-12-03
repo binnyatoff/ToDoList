@@ -1,24 +1,18 @@
 package ru.binnyatoff.todolist.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ru.binnyatoff.todolist.room.data.ToDoDatabase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.binnyatoff.todolist.room.repository.ToDoRepository
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ToDoViewModel(application: Application) : AndroidViewModel(application) {
-    val readAllData: LiveData<List<ToDo>>
-    private val repository: ToDoRepository
-
-    init {
-        val todoDao = ToDoDatabase.getDatabase(application).todoDao()
-        repository = ToDoRepository(todoDao)
-        readAllData = repository.readAllData
-    }
+@HiltViewModel
+class ToDoViewModel @Inject constructor(private val repository: ToDoRepository) : ViewModel() {
+    val readAllData: LiveData<List<ToDo>> = repository.readAllData
 
     fun addToDo(todo: ToDo) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -43,6 +37,4 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
             repository.doneTodo(id, done)
         }
     }
-
-
 }

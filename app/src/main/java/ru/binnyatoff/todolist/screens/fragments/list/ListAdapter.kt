@@ -1,4 +1,4 @@
-package ru.binnyatoff.todolist.fragments.list
+package ru.binnyatoff.todolist.screens.fragments.list
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.binnyatoff.todolist.R
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
 
 interface ToDoDelegate {
     fun todoClick(todo: ToDo)

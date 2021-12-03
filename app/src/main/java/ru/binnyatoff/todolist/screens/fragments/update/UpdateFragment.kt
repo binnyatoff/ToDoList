@@ -1,20 +1,22 @@
-package ru.binnyatoff.todolist.fragments.update
+package ru.binnyatoff.todolist.screens.fragments.update
 
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ru.binnyatoff.todolist.R
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
 import ru.binnyatoff.todolist.databinding.FragmentUpdateBinding
 import ru.binnyatoff.todolist.viewmodel.ToDoViewModel
 
+@AndroidEntryPoint
 class UpdateFragment : Fragment(R.layout.fragment_update) {
 
     lateinit var binding: FragmentUpdateBinding
-    lateinit var mToDoViewModel: ToDoViewModel
+    private val mToDoViewModel:ToDoViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,7 +28,6 @@ class UpdateFragment : Fragment(R.layout.fragment_update) {
         binding.updateNameTodo.setText(currentItem?.name_todo)
         binding.updateTextTodo.setText(currentItem?.text_todo)
 
-        mToDoViewModel = ViewModelProvider(this).get(ToDoViewModel::class.java)
         binding.updateButton.setOnClickListener { updateDatabase(currentItem) }
 
     }

@@ -2,7 +2,7 @@ package ru.binnyatoff.todolist.room.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
 
 @Dao
 interface ToDoDao {

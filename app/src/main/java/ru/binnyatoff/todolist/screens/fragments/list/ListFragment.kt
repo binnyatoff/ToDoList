@@ -1,28 +1,28 @@
-package ru.binnyatoff.todolist.fragments.list
+package ru.binnyatoff.todolist.screens.fragments.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.viewmodel.ToDoViewModel
-import ru.binnyatoff.todolist.model.ToDo
+import ru.binnyatoff.todolist.room.model.ToDo
 
+@AndroidEntryPoint
 class ListFragment: Fragment(R.layout.fragment_list) {
-    private lateinit var mToDoViewModel: ToDoViewModel
+    private val mToDoViewModel:ToDoViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
         val addbutton : FloatingActionButton = view.findViewById(R.id.addbutton)
         val adapter = ListAdapter()
-
-        mToDoViewModel = ViewModelProvider(this).get(ToDoViewModel::class.java)
 
         //RecyclerView
         adapter.attachDelegate(object : ToDoDelegate{

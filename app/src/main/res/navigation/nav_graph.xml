@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="ru.binnyatoff.todolist.fragments.list.ListFragment"
+        android:name="ru.binnyatoff.todolist.screens.fragments.list.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/fragment_list">
         <action
@@ -21,21 +21,21 @@
 
     <fragment
         android:id="@+id/addFragment"
-        android:name="ru.binnyatoff.todolist.fragments.add.AddFragment"
+        android:name="ru.binnyatoff.todolist.screens.fragments.add.AddFragment"
         android:label="AddFragment"
         tools:layout="@layout/fragment_add" />
 
 
     <fragment
         android:id="@+id/updateFragment"
-        android:name="ru.binnyatoff.todolist.fragments.update.UpdateFragment"
+        android:name="ru.binnyatoff.todolist.screens.fragments.update.UpdateFragment"
         android:label="UpdateFragment"
         tools:layout="@layout/fragment_update" />
 
 
     <fragment
         android:id="@+id/signIn"
-        android:name="ru.binnyatoff.todolist.fragments.authentication.SignIn"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.SignIn"
         android:label="SignIn"
         tools:layout="@layout/fragment_signin">
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcome"
-        android:name="ru.binnyatoff.todolist.fragments.authentication.Welcome"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.Welcome"
         android:label="Welcome"
         tools:layout="@layout/fragment_welcome">
         <action
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/register"
-        android:name="ru.binnyatoff.todolist.fragments.authentication.Register"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.Register"
         android:label="Register"
         tools:layout="@layout/fragment_register">
         <action
@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/splash"
-        android:name="ru.binnyatoff.todolist.fragments.authentication.Splash"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.Splash"
         android:label="Splash"
         tools:layout="@layout/fragment_splash">
         <action

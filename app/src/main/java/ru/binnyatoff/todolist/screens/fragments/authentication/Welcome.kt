@@ -1,17 +1,12 @@
-package ru.binnyatoff.todolist.fragments.authentication
+package ru.binnyatoff.todolist.screens.fragments.authentication
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.databinding.FragmentWelcomeBinding
-import ru.binnyatoff.todolist.fragments.list.ListFragment
 
 class Welcome : Fragment(R.layout.fragment_welcome) {
     private lateinit var binding: FragmentWelcomeBinding

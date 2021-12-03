@@ -1,4 +1,4 @@
-package ru.binnyatoff.todolist.model
+package ru.binnyatoff.todolist.room.model
 
 
 import android.os.Parcelable
