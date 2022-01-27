@@ -15,12 +15,13 @@ import javax.inject.Singleton
 class RoomProvider {
     @Provides
     @Singleton
-    fun provideDao(application: Application):ToDoDao{
+    fun provideDao(application: Application): ToDoDao {
         return ToDoDatabase.getDatabase(application).todoDao()
     }
+
     @Provides
     @Singleton
-    fun provideRepository(toDoDao: ToDoDao):ToDoRepository{
+    fun provideRepository(toDoDao: ToDoDao): ToDoRepository {
         return ToDoRepository(toDoDao)
     }
 }

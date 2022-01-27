@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,17 +16,17 @@ import ru.binnyatoff.todolist.viewmodel.ToDoViewModel
 import ru.binnyatoff.todolist.room.model.ToDo
 
 @AndroidEntryPoint
-class ListFragment: Fragment(R.layout.fragment_list) {
-    private val mToDoViewModel:ToDoViewModel by viewModels()
+class ListFragment : Fragment(R.layout.fragment_list) {
+    private val mToDoViewModel: ToDoViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val addbutton : FloatingActionButton = view.findViewById(R.id.addbutton)
+        val addbutton: FloatingActionButton = view.findViewById(R.id.addbutton)
         val adapter = ListAdapter()
 
         //RecyclerView
-        adapter.attachDelegate(object : ToDoDelegate{
+        adapter.attachDelegate(object : ToDoDelegate {
             override fun todoClick(todo: ToDo) {
                 val bundle = bundleOf("currentItem" to todo)
                 findNavController().navigate(R.id.action_listFragment_to_updateFragment, bundle)
@@ -38,7 +39,6 @@ class ListFragment: Fragment(R.layout.fragment_list) {
             override fun doneTodo(id: Int, done: Boolean) {
                 mToDoViewModel.doneTodo(id, done)
             }
-
         })
 
         recyclerView.adapter = adapter
@@ -53,5 +53,7 @@ class ListFragment: Fragment(R.layout.fragment_list) {
         addbutton.setOnClickListener {
             findNavController().navigate(R.id.action_listFragment_to_addFragment)
         }
+
     }
+
 }
