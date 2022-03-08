@@ -10,11 +10,13 @@ import kotlinx.parcelize.Parcelize
 data class ToDo(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    @ColumnInfo(name = "name_todo")
-    val name_todo: String,
-    @ColumnInfo(name = "text_todo")
-    val text_todo: String,
-    @ColumnInfo(name = "done_todo")
-    val done_todo: Boolean
+    @ColumnInfo(name = "name")
+    val name: String,
+    @ColumnInfo(name = "text")
+    val text: String,
+    @ColumnInfo(name = "done")
+    val done: Boolean,
+    @ColumnInfo(name = "position")
+    val position: Int
 ) : Parcelable
 

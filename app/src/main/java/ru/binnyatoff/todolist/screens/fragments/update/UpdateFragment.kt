@@ -10,37 +10,34 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.room.model.ToDo
 import ru.binnyatoff.todolist.databinding.FragmentUpdateBinding
-import ru.binnyatoff.todolist.viewmodel.ToDoViewModel
 
 @AndroidEntryPoint
 class UpdateFragment : Fragment(R.layout.fragment_update) {
-
-    lateinit var binding: FragmentUpdateBinding
-    private val mToDoViewModel:ToDoViewModel by viewModels()
+    private val mUpdateFragmentViewModel: UpdateFragmentViewModel by viewModels()
+    private var binding:FragmentUpdateBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val currentItem = arguments?.getParcelable<ToDo>("currentItem")
-
         binding = FragmentUpdateBinding.bind(view)
+        val currentItem = arguments?.getParcelable<ToDo>("currentItem")
+        binding?.updateNameTodo?.setText(currentItem?.name)
+        binding?.updateTextTodo?.setText(currentItem?.text)
 
-        binding.updateNameTodo.setText(currentItem?.name_todo)
-        binding.updateTextTodo.setText(currentItem?.text_todo)
-
-        binding.updateButton.setOnClickListener { updateDatabase(currentItem) }
-
+        binding?.updateButton?.setOnClickListener {
+            if (currentItem != null) {
+                val nameToDo = binding?.updateNameTodo?.text.toString()
+                val textTodo = binding?.updateTextTodo?.text.toString()
+                updateDatabase(currentItem, nameToDo, textTodo)
+            }
+        }
     }
 
-    private fun updateDatabase(currentItem: ToDo?) {
-        val nameTodo = binding.updateNameTodo.text.toString()
-        val textTodo = binding.updateTextTodo.text.toString()
-        val todo = currentItem?.let { ToDo(it.id, nameTodo, textTodo, currentItem.done_todo) }
+    private fun updateDatabase(currentItem: ToDo, nameTodo: String, textTodo: String) {
+
+        val todo = ToDo(currentItem.id, nameTodo, textTodo, currentItem.done, currentItem.position)
 
         if (inputCheck(nameTodo, textTodo)) {
-            if (todo != null) {
-                mToDoViewModel.updateToDo(todo)
-            }
+            mUpdateFragmentViewModel.updateToDo(todo)
             activity?.onBackPressed()
         } else {
             Toast.makeText(requireContext(), "Пожалуйста заполните все строчки", Toast.LENGTH_LONG)

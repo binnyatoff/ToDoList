@@ -35,16 +35,18 @@
 
     <fragment
         android:id="@+id/signIn"
-        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.SignIn"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.SignInFragment"
         android:label="SignIn"
         tools:layout="@layout/fragment_signin">
         <action
             android:id="@+id/action_signIn_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/welcome"
-        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.Welcome"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.WelcomeFragment"
         android:label="Welcome"
         tools:layout="@layout/fragment_welcome">
         <action
@@ -57,17 +59,19 @@
 
     <fragment
         android:id="@+id/register"
-        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.Register"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_register_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/splash"
-        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.Splash"
+        android:name="ru.binnyatoff.todolist.screens.fragments.authentication.SplashFragment"
         android:label="Splash"
         tools:layout="@layout/fragment_splash">
         <action

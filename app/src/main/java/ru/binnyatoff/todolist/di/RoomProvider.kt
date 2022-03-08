@@ -5,23 +5,24 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.binnyatoff.todolist.room.data.ToDoDao
-import ru.binnyatoff.todolist.room.data.ToDoDatabase
-import ru.binnyatoff.todolist.room.repository.ToDoRepository
+import ru.binnyatoff.todolist.room.data.RoomDao
+import ru.binnyatoff.todolist.room.data.AppDatabase
+import ru.binnyatoff.todolist.room.repository.Repository
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class RoomProvider {
+
     @Provides
     @Singleton
-    fun provideDao(application: Application): ToDoDao {
-        return ToDoDatabase.getDatabase(application).todoDao()
+    fun provideDao(application: Application): RoomDao {
+        return AppDatabase.getDatabase(application).todoDao()
     }
 
     @Provides
     @Singleton
-    fun provideRepository(toDoDao: ToDoDao): ToDoRepository {
-        return ToDoRepository(toDoDao)
+    fun provideRepository(roomDao: RoomDao): Repository {
+        return Repository(roomDao)
     }
 }

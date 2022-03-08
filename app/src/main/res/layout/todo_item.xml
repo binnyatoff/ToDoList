@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/name_todo"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/name_todo"
@@ -26,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="@string/name"
         android:textSize="23sp"
-        app:layout_constraintStart_toEndOf="@id/done_todo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -36,18 +35,8 @@
         android:maxLines="1"
         android:text="@string/text"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/done_todo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name_todo" />
-
-    <ImageButton
-        android:id="@+id/delete_todo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider2"

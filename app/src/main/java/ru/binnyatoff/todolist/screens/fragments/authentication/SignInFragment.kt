@@ -12,17 +12,18 @@ import com.google.firebase.ktx.Firebase
 import ru.binnyatoff.todolist.R
 import ru.binnyatoff.todolist.databinding.FragmentSigninBinding
 
-class SignIn : Fragment(R.layout.fragment_signin) {
+class SignInFragment : Fragment(R.layout.fragment_signin) {
     private lateinit var binding: FragmentSigninBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSigninBinding.bind(view)
-        val email = binding.signinLoginText.text
-        val password = binding.signinPasswordText.text
         binding.signin.setOnClickListener{
+            val email = binding.signinLoginText.text
+            val password = binding.signinPasswordText.text
             signin(email.toString(),password.toString())
+
         }
 
     }

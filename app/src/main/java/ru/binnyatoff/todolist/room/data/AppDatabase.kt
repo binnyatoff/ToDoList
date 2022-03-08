@@ -7,20 +7,20 @@ import androidx.room.RoomDatabase
 import ru.binnyatoff.todolist.room.model.ToDo
 
 @Database(entities = [ToDo::class], version = 1, exportSchema = false)
-abstract class ToDoDatabase : RoomDatabase() {
-    abstract fun todoDao(): ToDoDao
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun todoDao(): RoomDao
 
     companion object {
         @Volatile
-        private var INSTANCE: ToDoDatabase? = null
-        fun getDatabase(context: Context): ToDoDatabase {
+        private var INSTANCE: AppDatabase? = null
+        fun getDatabase(context: Context): AppDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
             val instance = Room.databaseBuilder(
                 context.applicationContext,
-                ToDoDatabase::class.java,
+                AppDatabase::class.java,
                 "todo_data"
             ).build()
             INSTANCE = instance
